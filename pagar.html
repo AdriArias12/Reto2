@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fulgora Jewelry</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="img/logodorado.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/diamante.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/templatemo.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+
+    <script src="basedatos/datos.js"></script>
+    <script src="basedatos/consultas.js"></script>
+</head>
+
+<body>
+
+    <!-- Contenedor para cargar la barra de menú usando JavaScript --> 
+    <div id="menu"></div> 
+    
+    <!-- Contenido de la página - Inicio --> 
+
+<!-- Hacer un formulario que pida los datos de la tardeja y al darle pagar salga un aviso que diga que se proceso el pago 
+ Implementar el siguiente formulario con un script (simulacón) que informe que se procesó el pago.-->
+
+    
+    <!-- Start Contact -->
+
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">Finalizar compra</h1>
+        </div>
+    </div>
+
+    <div class="container py-5 shadow">
+        <div class="row py-5">
+            <h2 class="h5 mt-4 text-center">Su compra total es de: $<b id="etiqueta_total">0</b></h2>
+                        <form id="contactForm" class="col-md-9 m-auto" method="post" role="form">
+                
+                    <div class="mb-3">
+                        <label for="inputname">Nombre del titular</label>
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Nombre como aparece en la tarjeta">
+                    </div>
+                    <div class="mb-3">
+                        <label for="card number">Numero de la tarjeta</label>
+                        <input type="text" class="form-control mt-1" id="number" name="number" placeholder="1234 5678 9012 3456">
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="dueDate">Fecha de vencimiento</label>
+                            <input type="month" class="form-control mt-1" id="dueDate" name="dueDate" placeholder="MM/AA">
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="cvvnumber">CVV</label>
+                            <input type="text" class="form-control mt-1" id="cvvnumber" name="cvvnumber" placeholder="000">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-end mt-2">
+                            <button type="submit" class="btn btn-success btn-lg px-3">Pagar</button>
+                        </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        carrito = obtenerCarrito();
+        let etiqueta_total = document.getElementById("etiqueta_total");
+        let total = 0;
+        carrito.forEach(element => {
+            total += element.precio;
+         });
+        etiqueta_total.innerText = total.toLocaleString("es-CO");
+
+    </script>
+    
+    <!--Parte para generar un mensaje de que los datos han sido enviados-->
+    <script>
+        const form = document.getElementById("contactForm");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // Evita que se recargue la página
+            alert("Tu pago ha sido recibido satisfactorimanete. Gracias por tu compra.");
+            form.reset(); // Opcional: limpiar el formulario después de enviar
+        });
+    </script>
+    <!-- End Contact -->
+
+    <!-- Contenido de la página - Final --> 
+    <!-- Contenedor para cargar el pie de página usando JavaScript --> 
+    
+    <div id="pie"></div>
+
+    <!-- Start Script -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/templatemo.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- End Script -->
+
+    <script> 
+        document.addEventListener("DOMContentLoaded", () => { 
+            cargarFragmento("menu", "menu.html"); 
+            cargarFragmento("pie", "pie.html"); 
+        }); 
+    </script>
+
+</body>
+
+</html>
